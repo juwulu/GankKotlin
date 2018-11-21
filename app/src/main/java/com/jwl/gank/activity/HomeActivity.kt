@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.content_home.*
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    val categories: Array<String> = arrayOf("Android", "iOS", "前端", "休息视频", "拓展资源")
+    val categories: Array<String> = arrayOf("Android", "iOS", "前端", "App", "拓展资源")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

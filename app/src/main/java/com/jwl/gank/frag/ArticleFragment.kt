@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.jwl.gank.Config
 import com.jwl.gank.R
 import com.jwl.gank.adapter.ArticleAdapter
 import com.jwl.gank.bean.ArticleBean
@@ -22,31 +24,52 @@ class ArticleFragment : Fragment() {
 
     var results = mutableListOf<Result>()
     var adapter: ArticleAdapter? = null
+    var category:String ="Android"
+    var pageNum:Int = 1
 
     companion object {
-        fun newInstance(category:String):ArticleFragment {
+        fun newInstance(category: String): ArticleFragment {
             var fragment = ArticleFragment();
             var bundle = Bundle();
-            bundle.putString("category",category)
+            bundle.putString("category", category)
             fragment.setArguments(bundle)
             return fragment;
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.frag_article, null, false)
         val articleRv: RecyclerView = view.findViewById(R.id.article_rv)
         articleRv.layoutManager = LinearLayoutManager(activity)
         adapter = ArticleAdapter(this!!.activity!!, results)
         articleRv.adapter = adapter
+        initEvent(articleRv)
         return view
     }
 
+    private fun initEvent(articleRv: RecyclerView) {
+        articleRv.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val linearLayoutManager = articleRv.layoutManager as LinearLayoutManager
+                if (linearLayoutManager.findLastVisibleItemPosition()==results.size-1) {
+                    getArticles(category,"${pageNum++}")
+                }
+            }
+        })
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val category = arguments?.getString("category")
+        category = arguments?.getString("category")!!
+        getArticles(category!!,"$pageNum")
+    }
+
+    fun getArticles(category:String,pageNum:String){
         RetrofitClient
                 .newInstance(ArticleService::class.java)
-                .getArticles(category!!, "10", "1").enqueue(object : Callback<ArticleBean> {
+                .getArticles(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
                     override fun onFailure(call: Call<ArticleBean>?, t: Throwable?) {
+                        Toast.makeText(this@ArticleFragment.context, t.toString(), Toast.LENGTH_LONG)
                     }
 
                     override fun onResponse(call: Call<ArticleBean>?, response: Response<ArticleBean>?) {
@@ -56,7 +79,6 @@ class ArticleFragment : Fragment() {
                     }
 
                 })
-
     }
 
 }

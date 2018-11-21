@@ -10,7 +10,7 @@ public class RetrofitClient{
     companion object {
         fun <T> newInstance(clazz:Class<T>): T {
             val retrofit = Retrofit.Builder()
-                    .baseUrl(Config().BASE_URL)
+                    .baseUrl(Config.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()

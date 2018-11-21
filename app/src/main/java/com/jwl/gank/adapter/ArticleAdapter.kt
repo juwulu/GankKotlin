@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.jwl.gank.GlideApp
 import com.jwl.gank.R
 import com.jwl.gank.bean.Result
@@ -17,10 +18,19 @@ class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : Recycl
 
     override fun onBindViewHolder(vh: ViewHolder, p1: Int) {
         val resultBean = result.get(p1)
-        vh.timeTv.setText("时间：${resultBean.publishedAt}")
+        vh.timeTv.setText("时间：${resultBean.publishedAt.substring(0, 10)}")
         vh.authorTv.setText("来源：${resultBean.source}")
         vh.titleTv.setText(resultBean.desc)
-        Glide.with(ctx).load("http://tupian.qqjay.com/u/2017/1201/2_161641_2.jpg").into(vh.imgIv)
+        var url: String = ""
+        if (resultBean.images != null) {
+            if (resultBean.images.size > 0) {
+                url = resultBean.images[0]
+            }
+        }
+        if (url.length == 0) {
+            vh.imgIv.setVisibility(View.GONE)
+        }
+        Glide.with(ctx).load(url).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(vh.imgIv)
     }
 
     override fun getItemCount(): Int {
