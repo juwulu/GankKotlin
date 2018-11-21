@@ -24,6 +24,15 @@
                     android:layout_height="match_parent">
 
                 <ImageView
+                        android:id="@+id/pic_iv"
+                        android:src="@drawable/ic_photo"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <ImageView
+                        android:id="@+id/find_iv"
                         android:src="@drawable/ic_explore"
                         android:layout_gravity="center"
                         android:layout_margin="15dp"
@@ -31,14 +40,8 @@
                         android:layout_height="wrap_content"/>
 
                 <ImageView
-                        android:src="@drawable/ic_explore"
-                        android:layout_gravity="center"
-                        android:layout_margin="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                <ImageView
-                        android:src="@drawable/ic_explore"
+                        android:id="@+id/movie_iv"
+                        android:src="@drawable/ic_movie"
                         android:layout_margin="15dp"
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
