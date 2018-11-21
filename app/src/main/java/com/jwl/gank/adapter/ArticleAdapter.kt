@@ -2,23 +2,25 @@ package com.jwl.gank.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.jwl.gank.GlideApp
 import com.jwl.gank.R
 import com.jwl.gank.bean.Result
 
-public class ArticleAdapter(var ctx: Context,var result:MutableList<Result>): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(vh: ViewHolder, p1: Int) {
         val resultBean = result.get(p1)
-        vh.timeTv.setText("时间：${resultBean.createdAt}")
+        vh.timeTv.setText("时间：${resultBean.publishedAt}")
         vh.authorTv.setText("来源：${resultBean.source}")
         vh.titleTv.setText(resultBean.desc)
-        Glide.with(ctx).load(resultBean.images.get(0)).into(vh.imgIv)
+        Glide.with(ctx).load("http://tupian.qqjay.com/u/2017/1201/2_161641_2.jpg").into(vh.imgIv)
     }
 
     override fun getItemCount(): Int {
@@ -30,10 +32,10 @@ public class ArticleAdapter(var ctx: Context,var result:MutableList<Result>): Re
         return ViewHolder(v);
     }
 
-    inner class ViewHolder(v:View) : RecyclerView.ViewHolder(v) {
+    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         var titleTv: TextView = v.findViewById(R.id.article_title_tv)
-        var authorTv:TextView =v.findViewById(R.id.article_author_tv);
-        var timeTv:TextView = v.findViewById(R.id.article_time_tv)
+        var authorTv: TextView = v.findViewById(R.id.article_author_tv);
+        var timeTv: TextView = v.findViewById(R.id.article_time_tv)
         var imgIv: ImageView = v.findViewById(R.id.article_img_iv)
     }
 }

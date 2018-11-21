@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
 class HomeAdapter: FragmentPagerAdapter {
+    val titles: Array<String> = arrayOf("Andorid", "iOS", "前端", "休息视频", "拓展资源")
 
     var mFragments: List<Fragment> = emptyList<Fragment>()
     constructor(fm:FragmentManager,fragments:List<Fragment>):super(fm){
@@ -16,6 +17,10 @@ class HomeAdapter: FragmentPagerAdapter {
 
     override fun getCount(): Int {
         return mFragments.size
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return titles[position]
     }
 
 }
