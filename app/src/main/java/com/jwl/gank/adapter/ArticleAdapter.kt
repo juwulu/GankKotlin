@@ -1,6 +1,8 @@
 package com.jwl.gank.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jwl.gank.GlideApp
 import com.jwl.gank.R
+import com.jwl.gank.activity.ArticleActivity
 import com.jwl.gank.bean.Result
 
 class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
@@ -31,6 +34,12 @@ class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : Recycl
             vh.imgIv.setVisibility(View.GONE)
         }
         Glide.with(ctx).load(url).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(vh.imgIv)
+        vh.rootCl.setOnClickListener {
+            val intent = Intent(ctx, ArticleActivity::class.java)
+            intent.putExtra("url",resultBean.url)
+            intent.putExtra("title",resultBean.desc)
+            ctx.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -47,5 +56,6 @@ class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : Recycl
         var authorTv: TextView = v.findViewById(R.id.article_author_tv);
         var timeTv: TextView = v.findViewById(R.id.article_time_tv)
         var imgIv: ImageView = v.findViewById(R.id.article_img_iv)
+        var rootCl:ConstraintLayout = v.findViewById(R.id.root_cl)
     }
 }
