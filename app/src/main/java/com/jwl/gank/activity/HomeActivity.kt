@@ -1,5 +1,6 @@
 package com.jwl.gank.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.jwl.gank.R
 import com.jwl.gank.adapter.HomeAdapter
 import com.jwl.gank.frag.ArticleFragment
@@ -27,7 +29,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "暂时不能发布文章", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
 
@@ -37,6 +39,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
         initTabLayout(categories)
+        initEvent()
+    }
+
+    private fun initEvent() {
+        pic_iv.setOnClickListener(object :View.OnClickListener{
+            override fun onClick(v: View?) {
+                startActivity(Intent(this@HomeActivity,BeautyActivity::class.java))
+            }
+        })
     }
 
 
