@@ -16,7 +16,6 @@ import com.jwl.gank.adapter.HomeAdapter
 import com.jwl.gank.frag.ArticleFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
-import kotlinx.android.synthetic.main.content_home.*
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     val categories: Array<String> = arrayOf("Android", "iOS", "前端", "App", "拓展资源")
@@ -48,6 +47,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this@HomeActivity,BeautyActivity::class.java))
             }
         })
+        movie_iv.setOnClickListener { startActivity(Intent(this@HomeActivity,RestMovieActivity::class.java)) }
     }
 
 

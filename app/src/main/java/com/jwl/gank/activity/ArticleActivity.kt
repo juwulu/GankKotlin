@@ -23,17 +23,15 @@ class ArticleActivity : AppCompatActivity() {
         title_tv.setText(title)
 
         val webSettings = article_wb.settings
-        webSettings.setAppCacheEnabled(true);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.supportMultipleWindows();
-        webSettings.setAllowContentAccess(true);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setSavePassword(true);
-        webSettings.setSaveFormData(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setAppCacheEnabled(true)
+        webSettings.setDomStorageEnabled(true)
+        webSettings.supportMultipleWindows()
+        webSettings.setAllowContentAccess(true)
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS)
+        webSettings.setUseWideViewPort(true)
+        webSettings.setLoadWithOverviewMode(true)
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true)
+        webSettings.setLoadsImagesAutomatically(true)
         article_wb.setWebViewClient(object :WebViewClient(){
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return false

@@ -6,9 +6,7 @@ import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.LinearLayout
 import android.widget.Toast
 import com.jwl.gank.Config
 import com.jwl.gank.R
@@ -16,7 +14,7 @@ import com.jwl.gank.adapter.BeautyAdapter
 import com.jwl.gank.bean.ArticleBean
 import com.jwl.gank.bean.Result
 import com.jwl.gank.net.RetrofitClient
-import com.jwl.gank.service.ArticleService
+import com.jwl.gank.service.DataService
 import kotlinx.android.synthetic.main.activity_beauty.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,8 +65,8 @@ class BeautyActivity : AppCompatActivity() {
 
     fun getBeauties(category: String, pageNum: String) {
         RetrofitClient
-                .newInstance(ArticleService::class.java)
-                .getArticles(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
+                .newInstance(DataService::class.java)
+                .getDatas(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
                     override fun onFailure(call: Call<ArticleBean>?, t: Throwable?) {
                         Toast.makeText(this@BeautyActivity, t.toString(), Toast.LENGTH_LONG)
                     }

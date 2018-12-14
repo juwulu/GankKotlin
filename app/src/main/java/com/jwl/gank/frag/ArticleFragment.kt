@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.jwl.gank.R
 import com.jwl.gank.adapter.ArticleAdapter
 import com.jwl.gank.bean.ArticleBean
 import com.jwl.gank.bean.Result
-import com.jwl.gank.service.ArticleService
+import com.jwl.gank.service.DataService
 import com.jwl.gank.net.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -66,8 +65,8 @@ class ArticleFragment : Fragment() {
 
     fun getArticles(category:String,pageNum:String){
         RetrofitClient
-                .newInstance(ArticleService::class.java)
-                .getArticles(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
+                .newInstance(DataService::class.java)
+                .getDatas(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
                     override fun onFailure(call: Call<ArticleBean>?, t: Throwable?) {
                         Toast.makeText(this@ArticleFragment.context, t.toString(), Toast.LENGTH_LONG)
                     }
