@@ -18,9 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.BeautyActivity"></activity>
-        <activity android:name=".activity.ArticleActivity"></activity>
-        <activity android:name=".activity.RestMovieActivity"></activity>
+        <activity android:name=".activity.BeautyActivity" />
+        <activity android:name=".activity.ArticleActivity" />
+        <activity android:name=".activity.RestMovieActivity" />
+        <activity android:name=".activity.SearchActivity"></activity>
     </application>
 
 </manifest>
