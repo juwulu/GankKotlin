@@ -14,7 +14,7 @@ import android.arch.persistence.room.Query
 @Dao
 interface SearchDao{
 
-    @Query("SELECT * FROM search limit 20")
+    @Query("SELECT * FROM search order by id desc limit 20")
     fun getAll():List<Search>
 
     @Insert

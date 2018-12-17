@@ -12,6 +12,6 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class Search(
-        @PrimaryKey var id:Int,
+        @PrimaryKey(autoGenerate = true) var id:Int,
         @ColumnInfo var record:String
 )
