@@ -1,9 +1,13 @@
 package com.jwl.gank.activity
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.webkit.*
+import android.widget.Toast
 import com.jwl.gank.R
+import com.jwl.gank.widget.ScrollWebView
 import kotlinx.android.synthetic.main.activity_article_detail.*
 import kotlinx.android.synthetic.main.activity_article_detail.view.*
 
@@ -41,6 +45,30 @@ class ArticleActivity : AppCompatActivity() {
         article_wb.setWebChromeClient(WebChromeClient());//这行最好不要丢掉
 
         article_wb.loadUrl(url)
+
+        article_wb.setOnScrollChangeListener(object :ScrollWebView.OnScollChangeListener{
+            @SuppressLint("RestrictedApi")
+            override fun onTurnDown() {
+                article_fb.visibility = View.VISIBLE
+            }
+
+            @SuppressLint("RestrictedApi")
+            override fun onTurnUp() {
+                article_fb.visibility= View.GONE
+            }
+
+        })
+
+
+        article_fb.setOnClickListener {
+            article_fb.isSelected=!article_fb.isSelected
+            if (article_fb.isSelected){
+                Toast.makeText(this@ArticleActivity,"收藏成功",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this@ArticleActivity,"取消收藏成功",Toast.LENGTH_LONG).show()
+            }
+        }
+
 
     }
 }
