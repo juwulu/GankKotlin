@@ -38,6 +38,14 @@ class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : Recycl
             val intent = Intent(ctx, ArticleActivity::class.java)
             intent.putExtra("url",resultBean.url)
             intent.putExtra("title",resultBean.desc)
+            intent.putExtra("publish",resultBean.publishedAt)
+            intent.putExtra("author",resultBean.who)
+            if (resultBean.images!=null&&resultBean.images.size>0) {
+                intent.putExtra("imgUrl",resultBean.images[0])
+            }else{
+                intent.putExtra("imgUrl","")
+            }
+            intent.putExtra("isArticle",true)
             ctx.startActivity(intent)
         }
     }

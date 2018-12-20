@@ -2,6 +2,7 @@ package com.jwl.gank.room
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.jwl.gank.room.favorite.Favorite
 import com.jwl.gank.room.search.Search
 
 /**
@@ -48,6 +49,23 @@ class AppDatabaseHelper(ctx: Context){
         for (search in search) {
             appDatabase.searchDao().delete(search)
         }
+    }
+
+
+    fun getFavorites():List<Favorite>{
+        return appDatabase.favoriteDao().queryAll()
+    }
+
+    fun deleteFavorite(title: String){
+        appDatabase.favoriteDao().delete(title)
+    }
+
+    fun insertFavorite(favorite: Favorite){
+        appDatabase.favoriteDao().insert(favorite)
+    }
+
+    fun queryFavoriteByTitle(title:String): Favorite {
+        return appDatabase.favoriteDao().queryByTitle(title)
     }
 
 
