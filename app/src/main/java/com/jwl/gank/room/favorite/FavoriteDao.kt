@@ -13,8 +13,8 @@ import android.arch.persistence.room.Query
 @Dao
 interface FavoriteDao{
 
-    @Query("SELECT * FROM favorite order by id desc" )
-    fun queryAll():List<Favorite>
+    @Query("SELECT * FROM favorite order by id desc limit ((:pageNum-1)*:pageSize),:pageSize*:pageNum")
+    fun queryAll(pageNum:Int,pageSize:Int):List<Favorite>
 
     @Query("SELECT * FROM  favorite where title=:title")
     fun queryByTitle(title:String):Favorite

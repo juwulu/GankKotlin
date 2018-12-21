@@ -21,7 +21,8 @@
         <activity android:name=".activity.BeautyActivity" />
         <activity android:name=".activity.ArticleActivity" />
         <activity android:name=".activity.RestMovieActivity" />
-        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.FavoriteActivity"></activity>
     </application>
 
 </manifest>

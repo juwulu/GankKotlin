@@ -49,7 +49,6 @@ class ArticleActivity : AppCompatActivity() {
                 return false
             }
         })
-        Log.d("aaa",title)
         Thread({
             val favorite = AppDatabaseHelper.getInstance(this).queryFavoriteByTitle(title)
             if (favorite!=null) {
@@ -98,8 +97,6 @@ class ArticleActivity : AppCompatActivity() {
                     runOnUiThread(Runnable { Toast.makeText(this@ArticleActivity, "收藏成功", Toast.LENGTH_LONG).show() })
                 } else {
                     AppDatabaseHelper.getInstance(this@ArticleActivity).deleteFavorite(title)
-                    val favorites = AppDatabaseHelper.getInstance(this@ArticleActivity).getFavorites()
-                    Log.d("favorite", "${favorites.size}")
                     runOnUiThread(Runnable { Toast.makeText(this@ArticleActivity, "取消收藏成功", Toast.LENGTH_LONG).show() })
                 }
             }).start()

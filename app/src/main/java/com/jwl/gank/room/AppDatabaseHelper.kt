@@ -52,8 +52,8 @@ class AppDatabaseHelper(ctx: Context){
     }
 
 
-    fun getFavorites():List<Favorite>{
-        return appDatabase.favoriteDao().queryAll()
+    fun getFavorites(pageNum:Int,pageSize:Int):List<Favorite>{
+        return appDatabase.favoriteDao().queryAll(pageNum,pageSize)
     }
 
     fun deleteFavorite(title: String){
