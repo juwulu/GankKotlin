@@ -37,6 +37,12 @@
             android:src="@drawable/favorite_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <ProgressBar
+            android:id="@+id/article_pb"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 

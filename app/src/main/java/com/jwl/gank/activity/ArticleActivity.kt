@@ -48,7 +48,13 @@ class ArticleActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return false
             }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                article_pb.visibility=View.GONE
+            }
         })
+
         Thread({
             val favorite = AppDatabaseHelper.getInstance(this).queryFavoriteByTitle(title)
             if (favorite!=null) {
@@ -57,6 +63,7 @@ class ArticleActivity : AppCompatActivity() {
                 })
             }
         }).start()
+
 
 
 
@@ -70,6 +77,7 @@ class ArticleActivity : AppCompatActivity() {
                 if (isArticle) {
                     article_fb.visibility = View.VISIBLE
                 }
+                article_pb.visibility=View.GONE
             }
 
             @SuppressLint("RestrictedApi")
@@ -77,6 +85,7 @@ class ArticleActivity : AppCompatActivity() {
                 if (isArticle) {
                     article_fb.visibility = View.GONE
                 }
+                article_pb.visibility=View.GONE
             }
 
         })
