@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:showIn="navigation_view">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/favorite"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="我的收藏"/>
+            android:id="@+id/favorite"
+            android:icon="@drawable/ic_favorite_border_white_24dp"
+            android:title="我的收藏" />
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Gallery"/>
+            android:id="@+id/nav_newest"
+            android:icon="@drawable/ic_open_in_new_black_24dp"
+            android:title="最新干货" />
         <item
-                android:id="@+id/nav_slideshow"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Slideshow"/>
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history"
+            android:title="历史干货" />
         <item
-                android:id="@+id/nav_manage"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Tools"/>
+            android:id="@+id/nav_read_history"
+            android:icon="@drawable/ic_bookmark_border_black_24dp"
+            android:title="阅读记录" />
+        <item
+            android:id="@+id/nav_read"
+            android:icon="@drawable/ic_read"
+            android:title="闲读" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="其他">
         <menu>
+
             <item
-                    android:id="@+id/nav_share"
-                    android:icon="@drawable/ic_menu_share"
-                    android:title="Share"/>
+                android:id="@+id/nav_update"
+                android:icon="@drawable/ic_update"
+                android:title="更新" />
             <item
-                    android:id="@+id/nav_send"
-                    android:icon="@drawable/ic_menu_send"
-                    android:title="Send"/>
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_idea"
+                android:title="反馈"/>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about"
+                android:title="关于" />
         </menu>
     </item>
 

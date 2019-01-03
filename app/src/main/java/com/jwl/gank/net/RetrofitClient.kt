@@ -72,7 +72,7 @@ public class RetrofitClient {
                     var request = chain.request()
                     if(!isNetworkAvalible(context)){
                         request = request.newBuilder()
-                                .header("Cache-Control", "public, only-if-cached, max-stale=60")
+                                .header("Cache-Control", "public, only-if-cached, max-stale=3600000000")
                                 .build()
                     }
                     return chain.proceed(request)

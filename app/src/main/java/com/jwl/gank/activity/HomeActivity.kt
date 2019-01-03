@@ -60,7 +60,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun initTabLayout(titles: Array<String>) {
         var fragments: ArrayList<Fragment> = arrayListOf()
         for (title in titles) {
-            //tablayout.addTab(tablayout.newTab().setText(title))
             fragments.add(ArticleFragment.newInstance(title))
         }
 
@@ -78,15 +77,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings->{
                 startActivity(Intent(this@HomeActivity,SearchActivity::class.java))
@@ -102,20 +97,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.favorite -> {
                 startActivity(Intent(this,FavoriteActivity::class.java))
             }
-            R.id.nav_gallery -> {
-
+            R.id.nav_newest->{
+                startActivity(Intent(this@HomeActivity,TodayActivity::class.java))
             }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.nav_history->{
+                startActivity(Intent(this@HomeActivity,HistoryActivity::class.java))
             }
         }
 
