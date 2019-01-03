@@ -89,7 +89,7 @@ class SearchActivity : AppCompatActivity() {
         history_cg.visibility = View.GONE
         history_ll.visibility=View.GONE
         result_rv.visibility = View.VISIBLE
-        RetrofitClient.newInstance(DataService::class.java)
+        RetrofitClient.newInstance(this!!.applicationContext,DataService::class.java)
                 .search(keyword, "all", "$pageSize", "$pageNum")
                 .enqueue(object : Callback<SearchBean> {
                     override fun onFailure(call: Call<SearchBean>?, t: Throwable?) {

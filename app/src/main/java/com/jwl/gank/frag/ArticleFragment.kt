@@ -65,7 +65,7 @@ class ArticleFragment : Fragment() {
 
     fun getArticles(category:String,pageNum:String){
         RetrofitClient
-                .newInstance(DataService::class.java)
+                .newInstance(activity!!.applicationContext,DataService::class.java)
                 .getDatas(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
                     override fun onFailure(call: Call<ArticleBean>?, t: Throwable?) {
                         Toast.makeText(this@ArticleFragment.context, t.toString(), Toast.LENGTH_LONG)
@@ -73,7 +73,9 @@ class ArticleFragment : Fragment() {
 
                     override fun onResponse(call: Call<ArticleBean>?, response: Response<ArticleBean>?) {
                         val articleBean = response!!.body()
-                        results.addAll(articleBean!!.results)
+                        if (articleBean != null) {
+                            results.addAll(articleBean.results)
+                        }
                         adapter!!.notifyDataSetChanged()
                     }
 

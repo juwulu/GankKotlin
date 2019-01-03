@@ -65,7 +65,7 @@ class BeautyActivity : AppCompatActivity() {
 
     fun getBeauties(category: String, pageNum: String) {
         RetrofitClient
-                .newInstance(DataService::class.java)
+                .newInstance(this!!.applicationContext,DataService::class.java)
                 .getDatas(category!!, Config.PAGE_SIZE, pageNum).enqueue(object : Callback<ArticleBean> {
                     override fun onFailure(call: Call<ArticleBean>?, t: Throwable?) {
                         Toast.makeText(this@BeautyActivity, t.toString(), Toast.LENGTH_LONG)

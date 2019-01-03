@@ -48,7 +48,7 @@ class RestMovieActivity : AppCompatActivity() {
     }
 
     private fun getRestMovies(pageSize: Int, pageNum: Int) {
-        RetrofitClient.newInstance(DataService::class.java)
+        RetrofitClient.newInstance(this!!.applicationContext,DataService::class.java)
                 .getRestMovies("$pageSize", "$pageNum").enqueue(object : Callback<RestMovieBean> {
                     override fun onResponse(call: Call<RestMovieBean>?, response: Response<RestMovieBean>?) {
                         val restMovieBean: RestMovieBean = response!!.body()!!
