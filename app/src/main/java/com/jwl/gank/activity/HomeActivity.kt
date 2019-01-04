@@ -103,6 +103,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_history->{
                 startActivity(Intent(this@HomeActivity,HistoryActivity::class.java))
             }
+            R.id.nav_read_history->{
+                startActivity(Intent(this,ReadRecordActivity::class.java))
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

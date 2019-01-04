@@ -2,10 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.FavoriteActivity">
+    android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:background="@color/colorPrimary"
@@ -13,10 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize">
         <TextView
-            android:text="我的收藏"
+            android:id="@+id/title_tv"
+            android:layout_gravity="center"
             android:textSize="18sp"
             android:textColor="#FFF"
-            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:text="阅读记录"
+            android:lines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </android.support.v7.widget.Toolbar>
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/favorite_rv"
+            android:id="@+id/read_record_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <ProgressBar
@@ -33,7 +34,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </FrameLayout>
-
-
 
 </LinearLayout>

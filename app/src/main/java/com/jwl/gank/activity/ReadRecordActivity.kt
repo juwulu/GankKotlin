@@ -1,7 +1,7 @@
 package com.jwl.gank.activity
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -9,27 +9,24 @@ import android.view.View
 import com.jwl.gank.R
 import com.jwl.gank.adapter.FavoriteAdapter
 import com.jwl.gank.room.AppDatabaseHelper
-import com.jwl.gank.room.favorite.Favorite
-import kotlinx.android.synthetic.main.activity_favorite.*
+import com.jwl.gank.room.read.Read
+import kotlinx.android.synthetic.main.activity_read_record.*
 
-class FavoriteActivity : AppCompatActivity() {
+class ReadRecordActivity : AppCompatActivity() {
 
-
-    lateinit var favorites: MutableList<Favorite>
+    lateinit var reads: MutableList<Read>
     var pageSize = 5
     var pageNum = 1
-    lateinit var favoriteAdapter:FavoriteAdapter<Favorite>
+    lateinit var readAdapter:FavoriteAdapter<Read>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite)
-
+        setContentView(R.layout.activity_read_record)
         toolbar.setNavigationOnClickListener { finish() }
-        favorites = mutableListOf()
-
-        favorite_rv.layoutManager = LinearLayoutManager(this)
-        favoriteAdapter = FavoriteAdapter(this, favorites)
-        favorite_rv.adapter = favoriteAdapter
+        reads = mutableListOf()
+        readAdapter = FavoriteAdapter(this, reads)
+        read_record_rv.layoutManager = LinearLayoutManager(this)
+        read_record_rv.adapter =readAdapter
 
         getFavorites()
         initEvent()
@@ -38,11 +35,11 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
-        favorite_rv.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+        read_record_rv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val linearLayoutManager = favorite_rv.layoutManager as LinearLayoutManager
-                if (linearLayoutManager.findLastVisibleItemPosition() >= favorites.size - 1) {
+                val linearLayoutManager = read_record_rv.layoutManager as LinearLayoutManager
+                if (linearLayoutManager.findLastVisibleItemPosition() >= reads.size - 1) {
                     pageNum++
                     progress.visibility=View.VISIBLE
                     getFavorites()
@@ -53,12 +50,12 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun getFavorites() {
         Thread {
-            favorites.addAll(AppDatabaseHelper.getInstance(this@FavoriteActivity).getFavorites(pageNum,pageSize))
+            reads.addAll(AppDatabaseHelper.getInstance(this@ReadRecordActivity).getReads(pageNum,pageSize))
             runOnUiThread {
-                favoriteAdapter.notifyDataSetChanged()
+                readAdapter.notifyDataSetChanged()
                 progress.visibility= View.GONE
             }
-            Log.d("aaa","${favorites.size}")
+            Log.d("aaa","${reads.size}")
         }.start()
     }
 }

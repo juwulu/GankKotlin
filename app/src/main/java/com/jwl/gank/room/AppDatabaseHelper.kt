@@ -3,6 +3,7 @@ package com.jwl.gank.room
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.jwl.gank.room.favorite.Favorite
+import com.jwl.gank.room.read.Read
 import com.jwl.gank.room.search.Search
 
 /**
@@ -11,9 +12,9 @@ import com.jwl.gank.room.search.Search
  * desc:    NoDiscription
  */
 
-class AppDatabaseHelper(ctx: Context){
+class AppDatabaseHelper(ctx: Context) {
 
-    var appDatabase = Room.databaseBuilder(ctx,AppDatabase::class.java,"search.db").build()
+    var appDatabase = Room.databaseBuilder(ctx, AppDatabase::class.java, "search.db").build()
 
     companion object {
         @Volatile
@@ -31,41 +32,58 @@ class AppDatabaseHelper(ctx: Context){
         }
 
     }
-    fun getAll():List<Search>{
+
+    fun getAll(): List<Search> {
         return appDatabase.searchDao().getAll()
     }
 
-    fun insertAll(vararg search:Search){
+    fun insertAll(vararg search: Search) {
         for (search in search) {
             appDatabase.searchDao().insert(search)
         }
     }
 
-    fun deleteAll(){
+    fun deleteAll() {
         appDatabase.searchDao().deleteAll()
     }
 
-    fun delete(vararg search: Search){
+    fun delete(vararg search: Search) {
         for (search in search) {
             appDatabase.searchDao().delete(search)
         }
     }
 
 
-    fun getFavorites(pageNum:Int,pageSize:Int):List<Favorite>{
-        return appDatabase.favoriteDao().queryAll(pageNum,pageSize)
+    fun getFavorites(pageNum: Int, pageSize: Int): List<Favorite> {
+        return appDatabase.favoriteDao().queryAll(pageNum, pageSize)
     }
 
-    fun deleteFavorite(title: String){
+    fun deleteFavorite(title: String) {
         appDatabase.favoriteDao().delete(title)
     }
 
-    fun insertFavorite(favorite: Favorite){
+    fun insertFavorite(favorite: Favorite) {
         appDatabase.favoriteDao().insert(favorite)
     }
 
-    fun queryFavoriteByTitle(title:String): Favorite {
+    fun queryFavoriteByTitle(title: String): Favorite {
         return appDatabase.favoriteDao().queryByTitle(title)
+    }
+
+    fun getReads(pageNum: Int, pageSize: Int): List<Read> {
+        return appDatabase.readDao().queryAll(pageNum, pageSize)
+    }
+
+    fun deleteRead(title: String) {
+        appDatabase.readDao().delete(title)
+    }
+
+    fun insertRead(read: Read) {
+        appDatabase.readDao().insert(read)
+    }
+
+    fun queryReadByTitle(title: String): Read {
+        return appDatabase.readDao().queryByTitle(title)
     }
 
 

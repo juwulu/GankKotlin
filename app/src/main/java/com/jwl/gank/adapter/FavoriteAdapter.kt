@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.jwl.gank.R
 import com.jwl.gank.activity.ArticleActivity
 import com.jwl.gank.room.favorite.Favorite
+import com.jwl.gank.room.read.Read
 
 /**
  * author:  lujunwu
@@ -21,7 +22,7 @@ import com.jwl.gank.room.favorite.Favorite
  * desc:    NoDiscription
  */
 
-public class FavoriteAdapter(var ctx:Context,var favorites:MutableList<Favorite>): RecyclerView.Adapter<FavoriteAdapter.VH>() {
+public class FavoriteAdapter<T>(var ctx:Context,var favorites:MutableList<T>): RecyclerView.Adapter<FavoriteAdapter<T>.VH>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): VH {
         val v = LayoutInflater.from(ctx).inflate(R.layout.item_article_layout, null, false) //To change body of created functions use File | Settings | File Templates.
         return VH(v);
@@ -33,31 +34,60 @@ public class FavoriteAdapter(var ctx:Context,var favorites:MutableList<Favorite>
 
     override fun onBindViewHolder(vh: VH, p1: Int) {
         val favorite = favorites.get(p1)
-        vh.timeTv.setText("时间：${favorite.publishTime.substring(0, 10)}")
-        vh.authorTv.setText("来源：${favorite.source}")
-        vh.titleTv.setText(favorite.title)
-        var url: String = ""
-        if (favorite.imgUrl != null) {
+        if (favorite is Favorite) {
+            vh.timeTv.setText("时间：${favorite.publishTime.substring(0, 10)}")
+            vh.authorTv.setText("来源：${favorite.source}")
+            vh.titleTv.setText(favorite.title)
+            var url: String = ""
+            if (favorite.imgUrl != null) {
                 url = favorite.imgUrl
-        }
-        if (url.length == 0) {
-            vh.imgIv.setVisibility(View.GONE)
-        }
-        Glide.with(ctx).load(url).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(vh.imgIv)
-        vh.rootCl.setOnClickListener {
-            val intent = Intent(ctx, ArticleActivity::class.java)
-            intent.putExtra("url",favorite.url)
-            intent.putExtra("title",favorite.title)
-            intent.putExtra("publish",favorite.publishTime)
-            intent.putExtra("author",favorite.source)
-            if (favorite.imgUrl!=null&&favorite.imgUrl.length>0) {
-                intent.putExtra("imgUrl",favorite.imgUrl)
-            }else{
-                intent.putExtra("imgUrl","")
             }
-            intent.putExtra("isArticle",true)
-            ctx.startActivity(intent)
+            if (url.length == 0) {
+                vh.imgIv.setVisibility(View.GONE)
+            }
+            Glide.with(ctx).load(url).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(vh.imgIv)
+            vh.rootCl.setOnClickListener {
+                val intent = Intent(ctx, ArticleActivity::class.java)
+                intent.putExtra("url",favorite.url)
+                intent.putExtra("title",favorite.title)
+                intent.putExtra("publish",favorite.publishTime)
+                intent.putExtra("author",favorite.source)
+                if (favorite.imgUrl!=null&&favorite.imgUrl.length>0) {
+                    intent.putExtra("imgUrl",favorite.imgUrl)
+                }else{
+                    intent.putExtra("imgUrl","")
+                }
+                intent.putExtra("isArticle",true)
+                ctx.startActivity(intent)
+            }
+        }else if (favorite is Read){
+            vh.timeTv.setText("时间：${favorite.publishTime.substring(0, 10)}")
+            vh.authorTv.setText("来源：${favorite.source}")
+            vh.titleTv.setText(favorite.title)
+            var url: String = ""
+            if (favorite.imgUrl != null) {
+                url = favorite.imgUrl
+            }
+            if (url.length == 0) {
+                vh.imgIv.setVisibility(View.GONE)
+            }
+            Glide.with(ctx).load(url).apply(RequestOptions().placeholder(R.drawable.placeholder)).into(vh.imgIv)
+            vh.rootCl.setOnClickListener {
+                val intent = Intent(ctx, ArticleActivity::class.java)
+                intent.putExtra("url",favorite.url)
+                intent.putExtra("title",favorite.title)
+                intent.putExtra("publish",favorite.publishTime)
+                intent.putExtra("author",favorite.source)
+                if (favorite.imgUrl!=null&&favorite.imgUrl.length>0) {
+                    intent.putExtra("imgUrl",favorite.imgUrl)
+                }else{
+                    intent.putExtra("imgUrl","")
+                }
+                intent.putExtra("isArticle",true)
+                ctx.startActivity(intent)
+            }
         }
+
     }
 
     inner class VH(v: View) : RecyclerView.ViewHolder(v) {

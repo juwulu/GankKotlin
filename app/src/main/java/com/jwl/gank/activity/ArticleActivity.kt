@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.jwl.gank.R
 import com.jwl.gank.room.AppDatabaseHelper
 import com.jwl.gank.room.favorite.Favorite
+import com.jwl.gank.room.read.Read
 import com.jwl.gank.widget.ScrollWebView
 import kotlinx.android.synthetic.main.activity_article_detail.*
 
@@ -62,6 +63,9 @@ class ArticleActivity : AppCompatActivity() {
                     article_fb.isSelected = true
                 })
             }
+            AppDatabaseHelper.getInstance(this).deleteRead(title)
+            AppDatabaseHelper.getInstance(this).insertRead(Read(0,title,publish,author,imgUrl,url))
+            Log.d("ddd","${AppDatabaseHelper.getInstance(this).getReads(1,4).size}")
         }).start()
 
 

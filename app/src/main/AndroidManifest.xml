@@ -27,7 +27,8 @@
         <activity android:name=".activity.FavoriteActivity" />
         <activity android:name=".activity.TodayActivity" />
         <activity android:name=".activity.HistoryActivity" />
-        <activity android:name=".activity.DailyActivity"></activity>
+        <activity android:name=".activity.DailyActivity" />
+        <activity android:name=".activity.ReadRecordActivity"></activity>
     </application>
 
 </manifest>
