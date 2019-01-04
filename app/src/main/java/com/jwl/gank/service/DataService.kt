@@ -6,6 +6,9 @@ import com.jwl.gank.bean.RestMovieBean
 import com.jwl.gank.bean.SearchBean
 import com.jwl.gank.bean.daily.DailyBean
 import com.jwl.gank.bean.today.TodayBean
+import com.jwl.gank.bean.xiandu.article.XianDuBean
+import com.jwl.gank.bean.xiandu.category.CategoryBean
+import com.jwl.gank.bean.xiandu.subcategory.SubCategoryBean
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -30,4 +33,21 @@ public interface DataService{
 
     @GET("api/history/content/day/{date}")
     fun getDetailByDate(@Path("date") date:String):Call<DailyBean>
+
+    /**
+     * 获取闲读主分类
+     */
+    @GET("api/xiandu/categories")
+    fun getCategory():Call<CategoryBean>
+
+    /**
+     * 获取闲读子分类
+     */
+    @GET("api/xiandu/category/{subCategory}")
+    fun getSubCategory(@Path("subCategory") subCategory:String):Call<SubCategoryBean>
+    /**
+     * 获取闲读数据
+     */
+    @GET("api/xiandu/data/id/{id}/count/{pageSize}/page/{pageNum}")
+    fun getXianDu(@Path("id") id:String,@Path("pageNum") pageNum:String,@Path("pageSize") pageSize: String):Call<XianDuBean>
 }

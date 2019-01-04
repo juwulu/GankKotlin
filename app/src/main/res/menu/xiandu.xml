@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wow"
+        android:title="科技资讯"/>
+    <item
+        android:id="@+id/apps"
+        android:title="趣味软件/游戏"/>
+    <item
+        android:id="@+id/imrich"
+        android:title="装备党"/>
+    <item
+        android:id="@+id/funny"
+        android:title="草根新闻"/>
+    <item
+        android:id="@+id/android"
+        android:title="Android"/>
+    <item
+        android:id="@+id/diediedie"
+        android:title="创业新闻"/>
+    <item
+        android:id="@+id/thinking"
+        android:title="独立思想"/>
+    <item
+        android:id="@+id/ios"
+        android:title="iOS"/>
+    <item
+        android:id="@+id/teamblog"
+        android:title="团队博客"/>
+
+
+</menu>

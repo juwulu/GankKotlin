@@ -56,7 +56,7 @@ class ArticleAdapter(var ctx: Context, var result: MutableList<Result>) : Recycl
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(ctx).inflate(R.layout.item_article_layout, null, false) //To change body of created functions use File | Settings | File Templates.
-        return ViewHolder(v);
+        return ViewHolder(v)
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {

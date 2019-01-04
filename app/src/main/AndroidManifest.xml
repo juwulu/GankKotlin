@@ -11,12 +11,12 @@
         android:icon="@drawable/avatar"
         android:label="@string/app_name"
         android:roundIcon="@drawable/avatar"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,7 +28,9 @@
         <activity android:name=".activity.TodayActivity" />
         <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.DailyActivity" />
-        <activity android:name=".activity.ReadRecordActivity"></activity>
+        <activity android:name=".activity.ReadRecordActivity" />
+        <activity android:name=".activity.ReadingActivity">
+        </activity>
     </application>
 
 </manifest>

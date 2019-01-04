@@ -64,7 +64,9 @@ class ArticleActivity : AppCompatActivity() {
                 })
             }
             AppDatabaseHelper.getInstance(this).deleteRead(title)
-            AppDatabaseHelper.getInstance(this).insertRead(Read(0,title,publish,author,imgUrl,url))
+            if (isArticle) {
+                AppDatabaseHelper.getInstance(this).insertRead(Read(0,title,publish,author,imgUrl,url))
+            }
             Log.d("ddd","${AppDatabaseHelper.getInstance(this).getReads(1,4).size}")
         }).start()
 
