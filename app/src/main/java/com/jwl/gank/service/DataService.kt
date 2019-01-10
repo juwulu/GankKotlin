@@ -1,17 +1,16 @@
 package com.jwl.gank.service
 
-import com.jwl.gank.bean.ArticleBean
-import com.jwl.gank.bean.HistoryDateBean
-import com.jwl.gank.bean.RestMovieBean
-import com.jwl.gank.bean.SearchBean
+import com.jwl.gank.bean.*
 import com.jwl.gank.bean.daily.DailyBean
 import com.jwl.gank.bean.today.TodayBean
 import com.jwl.gank.bean.xiandu.article.XianDuBean
 import com.jwl.gank.bean.xiandu.category.CategoryBean
 import com.jwl.gank.bean.xiandu.subcategory.SubCategoryBean
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Url
 
 public interface DataService{
 
@@ -50,4 +49,13 @@ public interface DataService{
      */
     @GET("api/xiandu/data/id/{id}/count/{pageSize}/page/{pageNum}")
     fun getXianDu(@Path("id") id:String,@Path("pageNum") pageNum:String,@Path("pageSize") pageSize: String):Call<XianDuBean>
+
+    /**
+     * app更新
+     */
+    @GET("http://pksu0g93m.bkt.clouddn.com/update.json")
+    fun updateCheck():Call<UpdateBean>
+
+    @GET
+    fun downloadApk(@Url url:String):Call<ResponseBody>
 }
